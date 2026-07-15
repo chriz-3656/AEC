@@ -265,9 +265,10 @@
 }
 
 @media (max-width: 480px) {
+    .flipbook-container { padding-top: 150px; overflow-x: hidden; }
     .book-wrapper { 
-        transform: scale(0.45) rotate(0deg); 
-        margin-bottom: -300px;
+        transform: scale(0.35) rotate(0deg); 
+        margin-bottom: -350px;
     }
-    .book-wrapper:hover { transform: scale(0.45) rotate(0deg); }
+    .book-wrapper:hover { transform: scale(0.35) rotate(0deg); }
 }

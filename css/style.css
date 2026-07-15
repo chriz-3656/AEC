@@ -111,7 +111,8 @@ li {
 .glass-nav {
     position: fixed;
     top: 20px; left: 20px; right: 20px;
-    height: 80px;
+    min-height: 80px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -531,8 +532,8 @@ li {
 @media (max-width: 900px) {
     .glass-nav {
         flex-direction: column;
-        padding: 15px;
-        gap: 15px;
+        padding: 10px;
+        gap: 10px;
         top: 0;
         left: 0;
         right: 0;
@@ -541,10 +542,15 @@ li {
         border-right: none;
         border-top: none;
     }
+    .nav-brand { font-size: 1.5rem; }
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
+    }
+    .nav-links a {
+        padding: 5px 12px;
+        font-size: 0.9rem;
     }
 }
 
@@ -566,7 +572,7 @@ li {
 @media (max-width: 480px) {
     .masonry-grid { column-count: 1; }
     .active-title { font-size: 2.5rem; }
-    .glass-nav { top: 10px; left: 10px; right: 10px; padding: 0 15px; }
+    .glass-nav { top: 0; left: 0; right: 0; padding: 10px; }
 }
 
 /* Marquee */
