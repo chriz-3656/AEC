@@ -1,0 +1,186 @@
+/* Replacing Glassmorphism with Brutalist classes */
+
+.glass-panel {
+    background: white;
+    border: var(--border-width) solid var(--graphite);
+    box-shadow: var(--brutal-shadow);
+    border-radius: 0;
+}
+
+.glass-btn {
+    background: var(--accent-blue);
+    border: 3px solid var(--graphite);
+    box-shadow: 4px 4px 0px var(--graphite);
+    color: white;
+    padding: 15px 30px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.glass-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--graphite);
+    background: var(--accent-pink);
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Fullscreen Memory Overlay */
+.memory-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 300;
+    background: var(--bg);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    background-image: radial-gradient(var(--graphite) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.close-memory-btn {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 310;
+}
+
+.memory-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.memory-hero {
+    position: relative;
+    width: 90%;
+    height: 60vh;
+    margin: 40px auto;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+    background: white;
+    border: var(--border-width) solid var(--graphite);
+    box-shadow: 15px 15px 0px var(--graphite);
+}
+
+.memory-hero img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: grayscale(50%) contrast(120%);
+}
+
+.memory-hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(28,28,28,0.9) 0%, transparent 80%);
+    z-index: 1;
+}
+
+.memory-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 6rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 5px 5px 0px var(--accent-pink);
+    transform: rotate(-1deg);
+}
+
+.memory-details {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.meta-info {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    background: var(--accent-yellow);
+    border: var(--border-width) solid var(--graphite);
+    box-shadow: var(--brutal-shadow);
+    transform: rotate(1deg);
+}
+
+.meta-info > div {
+    background: white;
+    padding: 15px 25px;
+    border: 3px solid var(--graphite);
+    box-shadow: 4px 4px 0px var(--graphite);
+}
+
+.meta-info .label {
+    display: block;
+    color: var(--graphite);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.meta-info .value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-pink);
+    font-family: var(--font-heading);
+}
+
+.memory-desc-text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--graphite);
+    font-weight: 700;
+    margin-bottom: 80px;
+    background: white;
+    padding: 40px;
+    border: var(--border-width) solid var(--graphite);
+    box-shadow: var(--brutal-shadow);
+}
+
+.gallery-title {
+    font-size: 3rem;
+    color: var(--graphite);
+    text-shadow: 3px 3px 0px var(--accent-blue);
+    margin-bottom: 30px;
+}
+
+.memory-sub-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.memory-sub-gallery img {
+    width: 100%;
+    border: var(--border-width) solid var(--graphite);
+    box-shadow: var(--brutal-shadow);
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.memory-sub-gallery img:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+@media (max-width: 768px) {
+    .memory-hero h1 { font-size: 3.5rem; }
+    .memory-hero { width: 100%; height: 50vh; margin: 0; border: none; border-bottom: var(--border-width) solid var(--graphite); }
+    .memory-desc-text { font-size: 1.3rem; }
+}

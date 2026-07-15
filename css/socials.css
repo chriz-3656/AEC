@@ -1,0 +1,198 @@
+body {
+    background-color: var(--bg);
+}
+
+.socials-container {
+    padding-top: 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 100vh;
+}
+
+.socials-sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    z-index: 20;
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.socials-sidebar::-webkit-scrollbar {
+    width: 0; /* Hide scrollbar */
+}
+
+.social-form {
+    background: white;
+    border: 5px solid var(--graphite);
+    padding: 30px;
+    box-shadow: 12px 12px 0px var(--graphite);
+    border-radius: var(--doodle-radius-2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transform: rotate(-1deg);
+}
+
+.social-form input, .social-form textarea {
+    border: 3px solid var(--graphite);
+    padding: 12px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    outline: none;
+    border-radius: var(--doodle-radius);
+    background: var(--bg);
+    box-shadow: inset 3px 3px 0px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    resize: none;
+}
+
+.social-form input:focus, .social-form textarea:focus {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0px var(--accent-blue);
+}
+
+.socials-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    align-content: start;
+    padding-bottom: 50px;
+}
+
+.social-card {
+    background: var(--accent-yellow);
+    border: 5px solid var(--graphite);
+    border-radius: var(--doodle-radius);
+    box-shadow: 8px 8px 0px var(--graphite);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.social-card:hover {
+    transform: scale(1.05) translateY(-10px) rotate(2deg) !important;
+    box-shadow: 15px 15px 0px var(--accent-pink);
+    z-index: 10;
+}
+
+.card-avatar-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 5px solid var(--graphite);
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 4px 4px 0px var(--graphite);
+    background: white;
+}
+
+.card-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.social-card:hover .card-avatar {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.card-name {
+    font-family: var(--font-poster);
+    font-size: 2.2rem;
+    color: var(--graphite);
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
+}
+
+.card-id {
+    font-family: var(--font-poster);
+    font-size: 1.2rem;
+    color: var(--accent-pink);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.card-bio {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    color: var(--graphite);
+}
+
+.card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background: white;
+    color: var(--graphite);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    border: 3px solid var(--graphite);
+    border-radius: var(--doodle-radius-2);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.card-link:hover {
+    background: var(--accent-blue);
+    color: white;
+    transform: translateY(-5px) scale(1.1) rotate(5deg);
+    box-shadow: 5px 5px 0px var(--graphite);
+}
+
+.card-link.ig:hover { background: var(--accent-pink); }
+.card-link.mail:hover { background: var(--accent-yellow); color: var(--graphite); }
+.card-link.web:hover { background: var(--accent-green); }
+
+/* Tape styling */
+.card-tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    width: 70px;
+    height: 30px;
+    background: rgba(255,255,255,0.9);
+    border: 3px solid var(--graphite);
+    z-index: 5;
+}
+
+@media (max-width: 900px) {
+    .socials-container {
+        flex-direction: column;
+        padding-top: 160px;
+    }
+    .socials-sidebar {
+        width: 100%;
+        margin-bottom: 30px;
+        position: relative;
+        top: 0;
+        height: auto;
+    }
+}

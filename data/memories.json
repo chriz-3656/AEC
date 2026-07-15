@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Freshers Day",
+    "date": "2023",
+    "semester": "S1",
+    "location": "AEC",
+    "image": "assets/photos/freshers.jpg",
+    "description": "Our first day together. The beginning of an amazing journey."
+  },
+  {
+    "title": "Industrial Visit",
+    "date": "2024",
+    "semester": "S2",
+    "location": "Tech Park",
+    "image": "assets/photos/industrial.jpg",
+    "description": "Exploring the industry standard practices and networking."
+  },
+  {
+    "title": "Onam",
+    "date": "2024",
+    "semester": "S3",
+    "location": "AEC Campus",
+    "image": "assets/photos/onam.jpg",
+    "description": "A colorful day filled with pookalam, sadhya, and cultural events."
+  },
+  {
+    "title": "Tech Fest",
+    "date": "2025",
+    "semester": "S4",
+    "location": "AEC Grounds",
+    "image": "assets/photos/techfest.jpg",
+    "description": "Showcasing innovations and competing in hackathons."
+  },
+  {
+    "title": "Farewell",
+    "date": "2026",
+    "semester": "S8",
+    "location": "AEC Main Auditorium",
+    "image": "assets/photos/farewell.jpg",
+    "description": "Saying goodbye with a heart full of memories."
+  }
+]

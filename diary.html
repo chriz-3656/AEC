@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEC Memories - Flipbook Diary</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/diary-book.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="diary-body">
+
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav class="glass-nav">
+        <a href="index.html" class="nav-brand magnetic">AEC</a>
+        <ul class="nav-links">
+            <li><a href="index.html#home" class="magnetic">Home</a></li>
+            <li><a href="index.html#gallery" class="magnetic">Gallery</a></li>
+            <li><a href="diary.html" class="magnetic" style="color:var(--accent-pink);">Diary</a></li>
+            <li><a href="socials.html" class="magnetic">Socials</a></li>
+        </ul>
+        <div class="nav-controls">
+            <button id="theme-toggle" class="icon-btn magnetic" style="font-family:var(--font-heading); font-weight:800; font-size:0.9rem; background:var(--bg); color:var(--text); border:3px solid var(--graphite); border-radius: var(--doodle-radius-2); box-shadow: 2px 2px 0 var(--graphite); cursor:pointer; padding:5px 10px;">DRK</button>
+        </div>
+    </nav>
+
+    <main class="flipbook-container">
+        <!-- Playful Stickers (Custom SVGs) -->
+        <div class="sticker sticker-1" style="z-index: 50; top: 10%; left: 5%;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--accent-yellow)" stroke="var(--graphite)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="sticker sticker-2" style="z-index: 50; top:80%; left:10%;">
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="3"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <div class="sticker sticker-3" style="z-index: 50; top:20%; right:10%;">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="var(--accent-blue)" stroke="var(--graphite)" stroke-width="3"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>
+        </div>
+        
+        <div class="book-wrapper">
+            <div class="book" id="book">
+                <!-- Sheets rendered by JS -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 0; padding-top: 40px;">
+        <div class="footer-content">
+            <svg style="position:absolute; top:-20px; left:-20px; color:var(--accent-pink);" width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <h2 class="poster-text" style="font-size: 2.5rem; text-shadow: 2px 2px 0 var(--graphite); margin-bottom: 10px;">CRAFTED BY A CLASSMATE</h2>
+            <p style="font-family: var(--font-main); font-size: 1.2rem; font-weight: 700; color: var(--text);">Designed, built, and curated for the AEC Class of 2026 (Cyber Forensic and Information Security Department) by <span style="color: var(--accent-pink); font-weight: 800;">chriz__3656</span></p>
+            
+            <div class="footer-links">
+                <a href="https://instagram.com/chriz__3656" target="_blank" class="footer-link ig magnetic">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    @chriz__3656
+                </a>
+                
+                <a href="https://chriz-3656.github.io" target="_blank" class="footer-link web magnetic">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    chriz-3656.github.io
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="libs/gsap.min.js"></script>
+    <script type="module">
+        import { initTheme } from './js/theme.js';
+        initTheme();
+    </script>
+    <script type="module" src="js/diary-page.js"></script>
+</body>
+</html>

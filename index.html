@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEC Memories</title>
+    
+    <meta name="description" content="AEC Memories - A cinematic journey through our college days.">
+    <meta name="theme-color" content="#0B1020">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <div class="bg-wrapper">
+        <canvas id="bg-canvas"></canvas>
+        <div class="noise-overlay"></div>
+        <div class="vignette"></div>
+        <div class="ambient-glow"></div>
+    </div>
+
+    <!-- Apple-quality loading screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="logo-container">
+                <h1 class="loader-title">AEC Memories</h1>
+            </div>
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Transparent glass navbar -->
+    <nav class="glass-nav">
+        <div class="nav-brand magnetic">AEC</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="magnetic">Home</a></li>
+            <li><a href="#timeline" class="magnetic">Timeline</a></li>
+            <li><a href="#gallery" class="magnetic">Gallery</a></li>
+            <li><a href="diary.html" class="magnetic">Diary</a></li>
+            <li><a href="socials.html" class="magnetic">Socials</a></li>
+            <li><a href="#about" class="magnetic">About</a></li>
+        </ul>
+        <div class="nav-controls">
+            <button id="theme-toggle" class="icon-btn magnetic" style="font-family:var(--font-heading); font-weight:800; font-size:0.9rem; background:var(--bg); color:var(--text); border:3px solid var(--graphite); border-radius: var(--doodle-radius-2); box-shadow: 2px 2px 0 var(--graphite); cursor:pointer; padding:5px 10px;">DRK</button>
+            <button id="search-btn" class="icon-btn magnetic" aria-label="Search" style="background:var(--bg); color:var(--text); border:3px solid var(--graphite); border-radius: var(--doodle-radius-2); box-shadow: 2px 2px 0 var(--graphite);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <button id="mute-btn" class="icon-btn magnetic" aria-label="Mute Music">
+                <div class="equalizer playing">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="glass-panel hidden">
+        <button id="close-search" class="icon-btn close-btn magnetic">&times;</button>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search memories, events, dates...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Playful Stickers & Doodles -->
+    <div class="sticker sticker-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg></div>
+    <div class="sticker sticker-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l10 6-10 6-10-6 10-6zm0 14l8-4.8v4.8l-8 4.8-8-4.8v-4.8l8 4.8z"/></svg></div>
+    <div class="sticker sticker-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10h2v-2h-2v2zm0 4h2v-2h-2v2zm0 4h2v-2h-2v2zm-2-12h2v-2h-2v2zm0 16h2v-2h-2v2zm-12-16h2v-2h-2v2zm0 16h2v-2h-2v2zm-2-4h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2v-2h-2v2z"/></svg></div>
+    
+    <!-- Additional Doodle Stickers -->
+    <div class="sticker sticker-4" style="top: 30%; right: 5%;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+    
+    <svg class="doodle doodle-float" style="top: 150px; left: 10%; width: 100px; height: 100px; color: var(--accent-blue);" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4">
+        <path class="draw-path" d="M10,50 Q30,10 50,50 T90,50" />
+        <path class="draw-path" d="M20,60 Q40,90 80,60" />
+    </svg>
+    <svg class="doodle doodle-float" style="top: 300px; right: 12%; width: 80px; height: 80px; color: var(--accent-green);" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4">
+        <path class="draw-path" d="M50,10 L60,40 L90,50 L60,60 L50,90 L40,60 L10,50 L40,40 Z" />
+    </svg>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+            
+            <!-- Home Section: 3D Cover Flow -->
+            <section id="home" class="section cover-flow-section">
+                <!-- Cover Flow DOM Overlay for events -->
+                <div id="cover-flow-dom"></div>
+                
+                <div class="active-card-info" id="active-info">
+                    <div class="info-date-sem">
+                        <span class="active-date" id="active-date">2026</span>
+                        <span class="dot">•</span>
+                        <span class="active-sem" id="active-sem">S1</span>
+                    </div>
+                    <h2 class="active-title" id="active-title">AEC Memories</h2>
+                    <p class="active-location" id="active-location">Campus</p>
+                    <p class="active-desc" id="active-desc">Loading memories...</p>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <svg class="doodle doodle-arrow" style="position:absolute; top:-60px; left:-80px; width:80px; height:80px; color:var(--accent-pink); transform:rotate(10deg);" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6">
+                        <path class="draw-path" d="M20,20 Q50,10 80,60 M60,60 L80,60 L75,40" />
+                    </svg>
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <h2 class="poster-text" style="font-size: 3rem; text-align:center; margin-bottom: 40px; text-shadow: 3px 3px 0 var(--graphite);">MEMORY VAULT</h2>
+                </div>
+            </section>
+
+            <!-- Infinite Marquee -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>AEC CLASS OF 2026 / CYBER FORENSIC & INFO SECURITY / NEVER FORGET / BEST MEMORIES</span>
+                    <span>AEC CLASS OF 2026 / CYBER FORENSIC & INFO SECURITY / NEVER FORGET / BEST MEMORIES</span>
+                    <span>AEC CLASS OF 2026 / CYBER FORENSIC & INFO SECURITY / NEVER FORGET / BEST MEMORIES</span>
+                    <span>AEC CLASS OF 2026 / CYBER FORENSIC & INFO SECURITY / NEVER FORGET / BEST MEMORIES</span>
+                </div>
+            </div>
+
+            <!-- Timeline Navigation -->
+            <section id="timeline" class="section">
+                <div class="section-header">
+                    <h2>Journey Timeline</h2>
+                    <svg class="doodle" style="position:absolute; bottom:-15px; left:0; width:100%; height:30px; color:var(--accent-yellow);" viewBox="0 0 200 30" fill="none" stroke="currentColor" stroke-width="4" preserveAspectRatio="none">
+                        <path class="draw-path" d="M5,15 Q50,0 100,15 T195,15" />
+                    </svg>
+                    <p class="subtext">Filter through the chapters</p>
+                    <svg class="doodle doodle-wiggle" style="position:absolute; top:-30px; right:-40px; width:60px; height:60px; color:var(--accent-pink);" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5">
+                        <path d="M50,10 A40,40 0 1,1 49.9,10" />
+                    </svg>
+                </div>
+                <div class="filters glass-panel" id="timeline-filters">
+                    <button class="filter-btn active" data-filter="all">ALL</button>
+                    <button class="filter-btn" data-filter="academic">ACADEMIC</button>
+                    <button class="filter-btn" data-filter="events">EVENTS</button>
+                    <button class="filter-btn" data-filter="hangouts">HANGOUTS</button>
+                    <button class="filter-btn magnetic" data-filter="S4">S4</button>
+                    <button class="filter-btn magnetic" data-filter="S8">S8</button>
+                </div>
+                <div class="timeline-track" id="timeline-track">
+                    <!-- Populated via JS -->
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="section">
+                <div class="section-header">
+                    <h2>Gallery Collection</h2>
+                    <svg class="doodle" style="position:absolute; bottom:-15px; left:0; width:100%; height:30px; color:var(--accent-blue);" viewBox="0 0 200 30" fill="none" stroke="currentColor" stroke-width="6" preserveAspectRatio="none">
+                        <path class="draw-path" d="M0,20 L50,5 L100,25 L150,5 L200,20" />
+                    </svg>
+                    <p class="subtext">All moments captured</p>
+                </div>
+                <div class="masonry-grid" id="masonry-grid">
+                    <!-- Populated via JS -->
+                </div>
+            </section>
+            
+            <!-- Diary moved to diary.html -->
+            
+            <section id="about" class="section">
+                <div class="section-header">
+                    <h2>About Us</h2>
+                    <p class="subtext">The people behind the memories</p>
+                </div>
+                <div class="about-content glass-panel">
+                    <p>This is a tribute to our college life. A cinematic collection of moments we've shared over the years. Every picture tells a story, and every memory brings a smile.</p>
+                </div>
+            </section>
+
+            <footer class="glass-footer">
+                <div class="footer-content">
+                    <h2>AEC Memories</h2>
+                    <p>Designed with ❤️</p>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Fullscreen Memory Open Overlay -->
+    <div id="memory-overlay" class="memory-overlay hidden">
+        <button id="close-memory" class="glass-btn close-memory-btn magnetic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+        </button>
+        <div class="memory-content scrollable">
+            <div class="memory-hero">
+                <img id="memory-hero-img" src="" alt="Hero">
+                <div class="memory-hero-overlay"></div>
+                <h1 id="memory-title-full">Title</h1>
+            </div>
+            <div class="memory-details">
+                <div class="meta-info glass-panel">
+                    <div>
+                        <span class="label">Date</span>
+                        <span class="value" id="memory-date-full"></span>
+                    </div>
+                    <div>
+                        <span class="label">Semester</span>
+                        <span class="value" id="memory-sem-full"></span>
+                    </div>
+                    <div>
+                        <span class="label">Location</span>
+                        <span class="value" id="memory-loc-full"></span>
+                    </div>
+                </div>
+                <p id="memory-desc-full" class="memory-desc-text"></p>
+                
+                <h3 class="gallery-title">More Photos</h3>
+                <div class="memory-sub-gallery" id="memory-sub-gallery">
+                    <!-- Additional photos -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="libs/three.min.js"></script>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <svg style="position:absolute; top:-20px; left:-20px; color:var(--accent-pink);" width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <h2 class="poster-text" style="font-size: 2.5rem; text-shadow: 2px 2px 0 var(--graphite); margin-bottom: 10px;">CRAFTED BY A CLASSMATE</h2>
+            <p style="font-family: var(--font-main); font-size: 1.2rem; font-weight: 700; color: var(--text);">Designed, built, and curated for the AEC Class of 2026 (Cyber Forensic and Information Security Department) by <span style="color: var(--accent-pink); font-weight: 800;">chriz__3656</span></p>
+            
+            <div class="footer-links">
+                <a href="https://instagram.com/chriz__3656" target="_blank" class="footer-link ig magnetic">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    @chriz__3656
+                </a>
+                
+                <a href="https://chriz-3656.github.io" target="_blank" class="footer-link web magnetic">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    chriz-3656.github.io
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="libs/gsap.min.js"></script>
+    <script src="libs/ScrollTrigger.min.js"></script>
+    <script src="libs/lenis.min.js"></script>
+    
+    <script type="module">
+        import { initTheme } from './js/theme.js';
+        initTheme();
+    </script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
